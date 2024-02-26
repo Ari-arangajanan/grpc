@@ -1,6 +1,14 @@
 server:
-  port: 8021
+  port: 9302
 
 grpc:
   server:
     port: 9000
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/seata_book?allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root

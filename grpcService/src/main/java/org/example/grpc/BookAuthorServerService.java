@@ -1,4 +1,4 @@
-package org.example;
+package org.example.grpc;
 
 import com.devProblems.Author;
 import com.devProblems.BookAuthorServiceGrpc;
