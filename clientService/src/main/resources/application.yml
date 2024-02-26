@@ -1,0 +1,10 @@
+grpc:
+  client:
+    grpc-devproblems-service:
+      address: static://localhost:9000
+      negotiationType: plaintext;
+
+      #if it is not secure TLS call
+
+server:
+  port: 8081

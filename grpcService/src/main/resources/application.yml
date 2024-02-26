@@ -1,0 +1,6 @@
+server:
+  port: 8021
+
+grpc:
+  server:
+    port: 9000
