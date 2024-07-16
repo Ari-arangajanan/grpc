@@ -1,0 +1,21 @@
+server:
+  port: 9301
+
+spring:
+  application:
+    name: userService
+  datasource:
+    url: jdbc:mysql://localhost:3306/seata_author?allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+grpc:
+  server:
+    port: 8000
+  client:
+    grpc-agentService:
+      address: static://localhost:9000
+      negotiationType: plaintext
+
+      #if it is not secure TLS call

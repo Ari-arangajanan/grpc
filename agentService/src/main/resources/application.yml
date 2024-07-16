@@ -1,0 +1,21 @@
+server:
+  port: 9302
+
+grpc:
+  server:
+    port: 9000
+  client:
+    grpc-userService:
+      address: static://localhost:9405
+      negotiation-type: plaintext
+
+
+
+spring:
+  application:
+    name: agentService
+  datasource:
+    url: jdbc:mysql://localhost:3306/seata_book?allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root

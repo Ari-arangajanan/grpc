@@ -19,8 +19,9 @@
 	<description>demo project for Spring Boot grpc</description>
 
 	<modules>
-		<module>grpcService</module>
-		<module>clientService</module>
+		<module>agentService</module>
+		<module>userService</module>
+		<module>accountService</module>
 		<module>proto</module>
 	</modules>
 </project>
