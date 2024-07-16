@@ -1,17 +1,20 @@
 grpc:
+  server:
+    port: 7000
   client:
-    grpc-devproblems-service:
-      address: static://localhost:9000
-      negotiationType: plaintext
-
+    grpc-userService:
+      address: static://localhost:9405
+      negotiation-type: plaintext
       #if it is not secure TLS call
 
 server:
-  port: 9301
+  port: 9303
 
 spring:
+  application:
+    name: accountService
   datasource:
-    url: jdbc:mysql://localhost:3306/seata_author?allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/seata_account?allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root

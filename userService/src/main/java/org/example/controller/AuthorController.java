@@ -26,8 +26,8 @@ public class AuthorController {
 
     //save Author
     @PostMapping("/author")
-    public void saveAuthor(@RequestBody Author author) {
-        bookService.insert(author);
+    public boolean saveAuthor(@RequestBody Author author) {
+        return bookService.insert(author);
     }
 
 }

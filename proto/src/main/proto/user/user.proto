@@ -1,0 +1,1 @@
+syntax = "proto3";option java_multiple_files = true;package com.devProblems;message UserReq{  int32 id = 1;  string name = 2;}message UserRes{  bytes userResponse = 1;}service UserService{  rpc saveUserAccount(UserReq) returns (UserRes);}

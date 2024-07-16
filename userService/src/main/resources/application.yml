@@ -17,5 +17,8 @@ grpc:
     grpc-agentService:
       address: static://localhost:9000
       negotiationType: plaintext
+    grpc-accountService:
+      address: static://localhost:7000
+      negotiationType: plaintext
 
       #if it is not secure TLS call

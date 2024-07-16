@@ -6,13 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("author_tbl")
+@TableName("account_tbl")
 public class Account {
 
 
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
+    private Integer agentId;
 
 
 }
