@@ -1,0 +1,1 @@
+package org.example.interfaces;public interface SagaSteps {    void execute();    void compensate();}
