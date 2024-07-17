@@ -1,5 +1,6 @@
 package org.example.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
 import org.example.model.Book;
 import org.example.repository.BookDao;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class BookService {
+public class BookService extends ServiceImpl<BookDao, Book> {
 
     private BookDao bookDao;
     public boolean insert(Book book) {
@@ -15,7 +16,7 @@ public class BookService {
             bookDao.insert(book);
             return true;
         }catch (Exception e){
-            return false;
+            throw new RuntimeException();
         }
     }
 

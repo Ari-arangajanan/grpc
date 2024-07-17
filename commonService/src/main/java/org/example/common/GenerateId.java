@@ -1,0 +1,1 @@
+package org.example.common;import java.util.UUID;public class GenerateId {    public static String generateUniqueId() {        return UUID.randomUUID().toString();    }}

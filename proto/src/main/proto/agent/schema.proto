@@ -21,13 +21,21 @@ message Author {
 }
 
 message BookReq{
-  bytes bookReq =1;
+//  bytes bookReq = 1;
+  int32 id = 1;
+  string name =2;
+  int32 authorId =3;
+  string rollbackId = 4;
 }
 
 message BookResponse{
-  bytes bookResponse =1;
+  bool bookResponse = 1;
 }
 
+
+message TransactionalResponse{
+  bool response = 1;
+}
 
 service BookAuthorService {
 
@@ -48,4 +56,6 @@ service BookAuthorService {
   rpc getBooksByGender(stream Book) returns (stream Book) {}
 
   rpc saveBook(BookReq) returns (BookResponse);
+
+  rpc transactionalRollBack (BookReq) returns (TransactionalResponse);
 }

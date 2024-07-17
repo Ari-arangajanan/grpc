@@ -1,8 +1,9 @@
 package org.example.service;
 
 import com.devProblems.BookAuthorServiceGrpc;
-import com.devProblems.UserServiceGrpc;
+import com.user.UserServiceGrpc;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.example.common.GenerateId;
 import org.example.config.SagaOrchestrator;
 import org.example.model.Author;
 import org.example.repository.AuthorDao;
@@ -26,16 +27,18 @@ public class AuthorService {
 
 
     public boolean insert(Author author) {
+        author.setRollbackId(GenerateId.generateUniqueId());
         CreateAuthor createAuthor = new CreateAuthor(authorDao,author );
         SaveBook saveBook = new SaveBook(bookAuthorServiceBlockingStub, author);
         SaveUserAccount saveUserAccount = new SaveUserAccount(userServiceBlockingStub, author);
 
-        SagaOrchestrator.addStep(createAuthor);
-        SagaOrchestrator.addStep(saveBook);
-        SagaOrchestrator.addStep(saveUserAccount);
+        SagaOrchestrator sagaOrchestrator = new SagaOrchestrator();
+        sagaOrchestrator.addStep(createAuthor);
+        sagaOrchestrator.addStep(saveBook);
+        sagaOrchestrator.addStep(saveUserAccount);
 
         try {
-            SagaOrchestrator.execute();
+            sagaOrchestrator.execute();
             return true;
         }catch (RuntimeException e) {
             System.out.println("Saga execution failed: " + e.getMessage());

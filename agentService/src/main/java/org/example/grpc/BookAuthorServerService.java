@@ -1,21 +1,16 @@
 package org.example.grpc;
 
-import com.devProblems.Author;
-import com.devProblems.BookAuthorServiceGrpc;
-import com.devProblems.BookReq;
-import com.devProblems.BookResponse;
-import com.google.protobuf.ByteString;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.devProblems.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.example.model.Book;
 import org.example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.SerializationUtils;
-
-import java.util.Objects;
 
 @GrpcService
 public class BookAuthorServerService extends BookAuthorServiceGrpc.BookAuthorServiceImplBase {
+
     @Autowired
     private BookService bookService;
 
@@ -34,16 +29,14 @@ public class BookAuthorServerService extends BookAuthorServiceGrpc.BookAuthorSer
     @Override
     public void saveBook(BookReq request, StreamObserver<BookResponse> responseObserver) {
         try {
-            Object req = SerializationUtils.deserialize(request.getBookReq().toByteArray());
-            Integer authorId = (Integer) req;
             Book book = new Book();
-            book.setAuthorId(authorId);
-            book.setName(authorId + "sampleName");
-
+            book.setAuthorId(request.getAuthorId());
+            book.setName(request.getName());
+            book.setRollbackId(request.getRollbackId());
             boolean isSaved = bookService.insert(book);
 
             BookResponse.Builder response = BookResponse.newBuilder()
-                    .setBookResponse(ByteString.copyFrom(Objects.requireNonNull(SerializationUtils.serialize(isSaved))));
+                    .setBookResponse(isSaved);
 
             responseObserver.onNext(response.build());
         }catch (Exception e){
@@ -51,7 +44,28 @@ public class BookAuthorServerService extends BookAuthorServiceGrpc.BookAuthorSer
         }finally {
             responseObserver.onCompleted();
         }
+    }
 
+    @Override
+    public void transactionalRollBack(BookReq request, StreamObserver<TransactionalResponse> responseObserver) {
+        try {
+            Book book = new Book();
+            book.setAuthorId(request.getAuthorId());
+            book.setName(request.getName());
+            book.setRollbackId(request.getRollbackId());
 
+//            Book bookObj = bookService.getOne(new QueryWrapper<Book>().eq("authorId", authorId));
+            boolean isDeleted = bookService.remove(new QueryWrapper<Book>().eq("rollbackId", request.getRollbackId()));
+            TransactionalResponse.Builder transactionalResponse = TransactionalResponse.newBuilder();
+            transactionalResponse.setResponse(isDeleted);
+
+            responseObserver.onNext(transactionalResponse.build());
+        }catch (Exception e){
+            responseObserver.onError(new Throwable("rollback Failed"));
+            responseObserver.onNext(null);
+            throw new RuntimeException("Book save failed");
+        }finally {
+            responseObserver.onCompleted();
+        }
     }
 }
