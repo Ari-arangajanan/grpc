@@ -1,0 +1,1 @@
+package org.example.grpc.server;import com.user.*;import net.devh.boot.grpc.server.service.GrpcService;@GrpcServicepublic class CapitalGrpcServer extends UserServiceGrpc.UserServiceImplBase {}

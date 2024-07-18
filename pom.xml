@@ -23,6 +23,7 @@
 		<module>userService</module>
 		<module>accountService</module>
 		<module>commonService</module>
+		<module>capitalService</module>
 		<module>proto</module>
 	</modules>
 </project>
