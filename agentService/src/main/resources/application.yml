@@ -25,5 +25,8 @@ rocketmq:
   name-server: 127.0.0.1:9876
   producer:
     group: agentService-producer-group
+    topic: AgentTopic
+    rollback-topic: AgentRollbackTopic
   consumer:
     group: agentService-consumer-group
+    topic: UserTopic

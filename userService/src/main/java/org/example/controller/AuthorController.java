@@ -4,7 +4,7 @@ import com.google.protobuf.Descriptors;
 import lombok.AllArgsConstructor;
 import org.example.model.Author;
 import org.example.service.BookAuthorClientService;
-import org.example.service.AuthorService;
+import org.example.service.AuthorServiceConductor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -15,7 +15,7 @@ public class AuthorController {
 
     BookAuthorClientService bookAuthorClientService;
 
-    private AuthorService bookService;
+    private AuthorServiceConductor bookService;
 
 
 

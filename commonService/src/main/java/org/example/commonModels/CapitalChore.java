@@ -1,0 +1,1 @@
+package org.example.commonModels;public class CapitalChore {}

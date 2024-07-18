@@ -21,10 +21,10 @@ message Author {
 }
 
 message BookReq{
-//  bytes bookReq = 1;
+  //  bytes bookReq = 1;
   int32 id = 1;
-  string name =2;
-  int32 authorId =3;
+  string name = 2;
+  int32 authorId = 3;
   string rollbackId = 4;
 }
 
@@ -34,6 +34,17 @@ message BookResponse{
 
 
 message TransactionalResponse{
+  bool response = 1;
+}
+
+
+message AgentChoreReq{
+  int32 id = 1;
+  string name = 2;
+  string rollbackId = 3;
+}
+
+message AgentChoreRes{
   bool response = 1;
 }
 
@@ -58,4 +69,9 @@ service BookAuthorService {
   rpc saveBook(BookReq) returns (BookResponse);
 
   rpc transactionalRollBack (BookReq) returns (TransactionalResponse);
+}
+
+
+service AgentChoreService{
+  rpc agentSave(AgentChoreReq) returns (AgentChoreRes);
 }

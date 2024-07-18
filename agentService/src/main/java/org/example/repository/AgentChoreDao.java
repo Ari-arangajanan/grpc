@@ -1,0 +1,1 @@
+package org.example.repository;import com.baomidou.mybatisplus.core.mapper.BaseMapper;import org.apache.ibatis.annotations.Mapper;import org.example.commonModels.AgentChore;@Mapperpublic interface AgentChoreDao extends BaseMapper<AgentChore> {}

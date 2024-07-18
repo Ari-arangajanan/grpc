@@ -7,9 +7,12 @@ import org.example.common.GenerateId;
 import org.example.config.SagaOrchestrator;
 import org.example.model.Author;
 import org.example.repository.AuthorDao;
+import org.example.service.orchestorCalls.CreateAuthor;
+import org.example.service.orchestorCalls.SaveBook;
+import org.example.service.orchestorCalls.SaveUserAccount;
 import org.springframework.stereotype.Service;
 @Service
-public class AuthorService {
+public class AuthorServiceConductor {
 
 
 
@@ -21,7 +24,7 @@ public class AuthorService {
     @GrpcClient("grpc-accountService")
     UserServiceGrpc.UserServiceBlockingStub userServiceBlockingStub;
 
-    public AuthorService(AuthorDao authorDao) {
+    public AuthorServiceConductor(AuthorDao authorDao) {
         this.authorDao = authorDao;
     }
 
@@ -32,6 +35,7 @@ public class AuthorService {
         SaveBook saveBook = new SaveBook(bookAuthorServiceBlockingStub, author);
         SaveUserAccount saveUserAccount = new SaveUserAccount(userServiceBlockingStub, author);
 
+        // Orchestration Conductor method
         SagaOrchestrator sagaOrchestrator = new SagaOrchestrator();
         sagaOrchestrator.addStep(createAuthor);
         sagaOrchestrator.addStep(saveBook);
