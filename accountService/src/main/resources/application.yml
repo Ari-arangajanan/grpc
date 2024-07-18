@@ -18,3 +18,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: accountService-producer-group
+  consumer:
+    group: accountService-consumer-group

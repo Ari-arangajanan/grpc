@@ -10,6 +10,13 @@ spring:
     username: root
     password: root
 
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: userService-producer-group
+  consumer:
+    group: userService-consumer-group
+
 grpc:
   server:
     port: 8000

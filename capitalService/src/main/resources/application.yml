@@ -8,13 +8,21 @@ grpc:
       #if it is not secure TLS call
 
 server:
-  port: 9303
+  port: 9304
 
 spring:
   application:
-    name: accountService
+    name: capitalService
   datasource:
     url: jdbc:mysql://localhost:3306/seata_capital?allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: capitalService-producer-group
+  consumer:
+    group: capitalService-consumer-group
