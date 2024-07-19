@@ -35,4 +35,3 @@ rocketmq:
     rollback-topic: AgentRollbackTopic
   consumer:
     group: agentService-consumer-group
-    topic: UserTopic

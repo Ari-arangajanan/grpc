@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package com.devProblems;
+
+message capitalChoreReq{
+  int32 id = 1;
+  string name = 2;
+  string rollbackId = 3;
+}
+
+message CapitalChoreRes{
+  bool response = 1;
+}
+
+
+service CapitalChoreService{
+  rpc capitalSave(capitalChoreReq) returns (CapitalChoreRes);
+}
