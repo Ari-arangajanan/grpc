@@ -57,6 +57,11 @@
             <version>3.3.0</version>
         </dependency>
         <!-- mybatis -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
         <!--mybatis-generator-->
         <dependency>

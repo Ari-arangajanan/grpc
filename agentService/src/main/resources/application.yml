@@ -8,6 +8,12 @@ grpc:
     grpc-userService:
       address: static://localhost:9405
       negotiation-type: plaintext
+    grpc-accountService:
+      address: static://localhost:7000
+      negotiationType: plaintext
+    grpc-capitalService:
+      address: static://localhost:6000
+      negotiationType: plaintext
 
 
 

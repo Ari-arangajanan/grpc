@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@AllArgsConstructor
 public class AuthorController {
 
-    BookAuthorClientService bookAuthorClientService;
+    private final BookAuthorClientService bookAuthorClientService;
 
-    private AuthorServiceConductor bookService;
+    private final AuthorServiceConductor bookService;
 
+    public AuthorController(BookAuthorClientService bookAuthorClientService, AuthorServiceConductor bookService) {
+        this.bookAuthorClientService = bookAuthorClientService;
+        this.bookService = bookService;
+    }
 
 
     @GetMapping("/author/{authorId}")
